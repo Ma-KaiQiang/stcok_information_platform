@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- DataTables Example -->
+{% block stock_select_content %}
+
+    {#    <div class="btn-group">#}
+    {#        <button type="button" class="btn btn-primary">选股</button>#}
+    {#        <button type="button" class="btn btn-default">按钮 2</button>#}
+    {#        <button type="button" class="btn btn-default">按钮 3</button>#}
+    {#    </div>#}
+    <h5 style="color: #0a58ca">自选管理</h5><br>
+    <table class="table table-striped table-bordered table-hover" width="100%">
+        <thead>
+        <tr>
+            <th>股票编码</th>
+            <th>股票名称</th>
+            <th>压力位</th>
+            <th>支持位</th>
+            <th>止损位</th>
+            <th>止盈位</th>
+            <th>投顾建议</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in stock_item %}
+            <tr>
+
+                {% for i in row %}
+                    <td style="white-space: nowrap;text-overflow: ellipsis" title="{{ i }}">
+                        {{ i }}
+                    </td>
+                {% endfor %}
+                <td>
+                    <a role="button" href="###" class="btn btn-primary btn-sm">查看</a>
+                    <a role="button" href="###" class="btn btn-danger btn-sm">取消自选</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock stock_select_content %}

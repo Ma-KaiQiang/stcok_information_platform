@@ -1,0 +1,103 @@
+{% extends 'stock_index.html' %}
+
+{% load static %}
+{% block stock_detail %}
+    <div>
+        <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+        <h4 id="stock-name" style="color: #bb2d3b">{{ name }}</h4>
+
+        {% if msg %}
+            <div id="myAlert2" class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>警告！</strong>{{ msg }}
+            </div>
+        {% endif %}
+        <form action="{% url 'add_select' %}" method="post">
+            <div>
+                <label>股票代码：</label>
+                <input id="code" type="text" name='code' value="{{ code }}">
+            </div>
+            <div>
+                <label>交易所：</label>
+                <input type="text" name='source' value="{{ source }}" disabled="disabled">
+            </div>
+            <div>
+                <label>现价：</label>
+                <input type="text" name='price' value="{{ price }}" disabled="disabled">元
+            </div>
+            <div>
+                <label>当日涨幅：</label>
+                <input type="text" name='pchange' value="{{ pchange }}" disabled="disabled">
+            </div>
+            <button type="submit" class="btn btn-danger">加入自选</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger">K线</button>
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" onclick="kline(30)" data-toggle="modal"
+                       data-target="#staticBackdrop">30日</a>
+                    <a class="dropdown-item" href="#" onclick="kline(60)" data-toggle="modal"
+                       data-target="#staticBackdrop">60日</a>
+                    <a class="dropdown-item" href="#" onclick="kline(180)" data-toggle="modal"
+                       data-target="#staticBackdrop">180日</a>
+                    {#                    <div class="dropdown-divider"></div>#}
+                    {#                    <a class="dropdown-item" href="#">Separated link</a>#}
+                </div>
+            </div>
+        </form>
+
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">K线</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="bar" style="width:1000px; height:600px;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        {#                        <button type="button" class="btn btn-primary">Understood</button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var kline = function (time) {
+            var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+
+            $(
+                function () {
+                    fetchData(chart);
+                }
+            );
+            var name = document.getElementById('stock-name').innerHTML
+            var code = document.getElementById('code').getAttribute('value')
+
+            function fetchData() {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "http://127.0.0.1:8000/stock/fullChart/",
+                    dataType: 'json',
+                    data: JSON.stringify({"name": name, "time": time, 'code': code}),
+                    success: function (result) {
+                        chart.setOption(result);
+                    }
+                });
+            }
+        }
+
+    </script>
+{% endblock %}

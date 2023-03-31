@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+<style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+
+</style>
+{% block sb_admin_content %}
+
+    <label>股票查询：</label>
+    <input placeholder="输入股票名称或者代码">
+    <button>查询</button>
+    <table>
+        <thead>
+        <tr>
+            <th>股票代码</th>
+            <th>股票名称</th>
+            <th>当前价格</th>
+            <th>涨跌幅</th>
+            <th>压力位</th>
+            <th>支撑位</th>
+            <th>止损位</th>
+            <th>止盈位</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        {% for row in stock_item %}
+            <tr>
+
+                {% for i in row %}
+                    <td>
+                        {{ i }}
+                    </td>
+                {% endfor %}
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock sb_admin_content %}

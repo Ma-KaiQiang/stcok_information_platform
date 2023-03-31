@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- DataTables Example -->
+{% block stock_list %}
+    <button class="btn btn-dark" style="text-align:right;"><a href="{% url 'stock_sync' %}"><span>同步股票信息</span></a></button>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            股票列表
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>地域</th>
+                        <th>所属行业</th>
+                        <th>上市日期</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for row in stock_list %}
+                        <tr>
+                            {% for i in row %}
+                                <td>
+                                    {{ i }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+    <p class="small text-center text-muted my-5">
+        <em>More table examples coming soon...</em>
+    </p>
+{% endblock stock_list %}

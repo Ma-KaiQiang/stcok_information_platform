@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block market %}
+
+    <style>
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 0 2px;
+            border: 1px solid silver;
+            color: #bb2d3b;
+            width: 400px;
+        }
+
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto;
+        }
+    </style>
+    <h5 style="color: #0a53be">主力吸筹精选</h5>
+    <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border: 2px solid bisque;"/>
+    {% for d in data %}
+        <fieldset class="col-3">
+            <legend>{{ d.name }}:</legend>
+            <p>名称:{{ d.name }}</p>
+            <p>价格:{{ d.price }}</p>
+            <p>涨幅:{{ d.change }}%</p>
+            <p>主力买入天数:{{ d.buyDays }}</p>
+            <p>主力连续买入天数:{{ d.cBuyDays }}</p>
+        </fieldset>
+    {% endfor %}
+
+    <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#6f5499" size="10"/>
+    <h5>日内风口</h5>
+    <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#6f5499" size="10"/>
+{% endblock market %}

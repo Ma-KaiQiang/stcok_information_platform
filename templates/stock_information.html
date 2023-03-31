@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- DataTables Example -->
+{% block sb_admin_content %}
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            自选股票信息
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>开盘价格</th>
+                        <th>最高价</th>
+                        <th>最低价</th>
+                        <th>现价</th>
+                        <th>涨跌幅</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+                    {% for row in stock_item %}
+                        <tr>
+                            {% for i in row %}
+                                <td>
+                                    {{ i }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+    <p class="small text-center text-muted my-5">
+        <em>More table examples coming soon...</em>
+    </p>
+{% endblock sb_admin_content %}

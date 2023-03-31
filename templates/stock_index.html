@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load  static %}
+
+{% block stock_index %}
+    <div class="container">
+        {#    居中水平对齐#}
+        <form name="searchForm" method="post" action="{% url 'search_stock' %}">
+            <div class="row v-align justify-content-center">
+                <input class="col-3" type="text" name="code" placeholder="输入股票代码、名称">
+                <button type="submit" onclick="Al(null)"
+                        class='btn btn-info border border-black'>查行情
+                </button>
+                <button type="submit"
+                        class='btn btn-info border border-black'>查资讯
+                </button>
+            </div>
+        </form>
+        <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#6f5499" size="10"/>
+        <div>
+            {% block stock_detail %}{% endblock stock_detail %}
+            {% block stock_infomation %}{% endblock stock_infomation %}
+        </div>
+    </div>
+
+{% endblock stock_index %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load  static %}
+
+{% block stock_news %}
+    <div id="data_source_head">
+    <span >
+        <a href="{% url 'sina_news' %}">新浪财经</a>
+    </span>
+        <span>
+        <a href="{% url 'east_money_news' %}">东方财富</a>
+    </span>
+        <span>
+        <a href="#">同花顺</a>
+    </span>
+
+    </div>
+    <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#6f5499" size="10"/>
+    {% block sina_news %} {% endblock sina_news %}
+    {% block east_money_news %}{% endblock east_money_news %}
+
+{% endblock stock_news %}
