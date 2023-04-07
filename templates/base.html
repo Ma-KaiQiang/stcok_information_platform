@@ -8,15 +8,14 @@
     <meta name="description" content="{% block sb_admin_description %}{% endblock sb_admin_description %}">
     <meta name="author" content="{% block sb_admin_author %}{% endblock %}">
     <title>{% block title %}股票信息平台 -Bootstrap Admin Template{% endblock %}</title>
+    <link rel="shortcut icon" href="favicon.ico">
     <link href="{% static "css/table.css" %}" rel="stylesheet" type="text/css">
     <!-- Custom fonts for this template-->
     <link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
     <link href="{% static "vendor/datatables/dataTables.bootstrap4.css" %}" rel="stylesheet">
-
     <!-- Custom styles for this template-->
     <link href="{% static "base/css/sb-admin.css" %}" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -216,28 +215,20 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{% static "base/js/bootstrap.min.js" %}"></script>
 <script type="text/javascript" src="{% static "base/js/echarts.min.js" %}"></script>
-
 {% block sb_admin_custom_js %}{% endblock sb_admin_custom_js %}
 <!-- Bootstrap core JavaScript-->
 <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
 <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="{% static "vendor/jquery-easing/jquery.easing.min.js" %}"></script>
-
 <!-- Page level plugin JavaScript-->
 <script src="{% static "vendor/chart.js/Chart.min.js" %}"></script>
 <script src="{% static "vendor/datatables/jquery.dataTables.js" %}"></script>
 <script src="{% static "vendor/datatables/dataTables.bootstrap4.js" %}"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="{% static "base/js/sb-admin.min.js" %}"></script>
-
 <!-- Demo scripts for this page-->
 <script src="{% static "js/datatables-demo.js" %}"></script>
 <script src="{% static "js/chart-area-demo.js" %}"></script>
-
-
 </body>
-
 </html>
